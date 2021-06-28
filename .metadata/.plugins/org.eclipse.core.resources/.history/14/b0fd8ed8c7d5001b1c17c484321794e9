@@ -1,0 +1,29 @@
+package library2;
+
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+
+import libraryJPA2.LibManager;
+import libraryJPA2.User;
+
+@Consumes("text/html")
+@Produces("text/json")
+@Path("/login")
+public class Login {
+	
+	@Inject
+	private LibManager lmanager;
+	
+	@POST
+	public String Authentication(@PathParam("username") String uname,@PathParam("password") String password) {
+		List<User> authUsers = lmanager.getRegisteredUsers();
+		
+		return "User authenticated";
+	}
+}

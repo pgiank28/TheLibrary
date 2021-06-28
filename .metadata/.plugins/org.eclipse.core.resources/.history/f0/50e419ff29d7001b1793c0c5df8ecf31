@@ -1,0 +1,9 @@
+package soap;
+
+import javax.jws.WebService;
+
+
+@WebService
+public class BestBooks {
+
+}

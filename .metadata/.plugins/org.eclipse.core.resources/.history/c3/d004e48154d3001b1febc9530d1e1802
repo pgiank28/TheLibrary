@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="libraryJPA2">
+	
+	<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+	<jta-data-source>java:jboss/datasources/librarydb</jta-data-source>
+	<shared-cache-mode>NONE</shared-cache-mode>
+	<exclude-unlisted-classes>false</exclude-unlisted-classes>
+	<class>libraryJPA2.Books</class>
+	<class>libraryJPA2.Users</class>
+	<properties>
+			<property name="eclipselink.target-server" value="JBoss" />
+			<property name="eclipselink.logging.logger" value="ServerLogger"/>
+			<!-- Uncomment to log all SQL queries executed -->
+			<property name="eclipselink.logging.level.sql" value="FINE" />
+			<property name="eclipselink.logging.parameters" value="true" />
+			<property name="eclipselink.logging.timestamp" value="false" />
+			<property name="eclipselink.logging.session" value="false" />
+			<property name="eclipselink.logging.thread" value="false" />
+			<property name="eclipselink.logging.connection" value="false" />
+			<property name="eclipselink.logging.exceptions" value="true" />
+			<property name="eclipselink.deploy-on-startup" value="True" />
+		</properties>
+	</persistence-unit>
+</persistence>

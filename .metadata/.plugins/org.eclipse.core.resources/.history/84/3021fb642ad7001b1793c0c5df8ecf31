@@ -1,0 +1,12 @@
+package soap;
+
+import javax.jws.WebService;
+import javax.ws.rs.Path;
+
+
+@WebService
+@Path("/best")
+public class BestBooks {
+
+	
+}

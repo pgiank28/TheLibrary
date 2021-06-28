@@ -1,0 +1,32 @@
+package soap;
+
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+import javax.ws.rs.Path;
+
+import entities.Books;
+import libraryJPA2.LibManager;
+
+
+@WebService
+@Path("/best")
+public class BestBooks {
+
+	@Inject
+	private LibManager lmanager;
+	
+	@WebMethod
+	public String getBestBooks() {
+		List<Books> b = lmanager.getBestBooks();
+		
+		StringBuilder builder = new StringBuilder();
+		b.forEach(bk->{
+			builder.append(bk.toString());
+		});
+		
+		return builder.toString();
+	}
+}

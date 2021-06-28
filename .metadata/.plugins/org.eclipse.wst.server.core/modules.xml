@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modules>
+  <module moduleId="org.eclipse.jst.jee.server:library" serverId="WildFly 18"/>
+  <module moduleId="org.eclipse.jst.jee.server:TheLibrary" serverId="WildFly 18"/>
+</modules>

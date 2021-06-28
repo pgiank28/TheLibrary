@@ -1,0 +1,9 @@
+package auth;
+
+import javax.ws.rs.ext.Provider;
+
+@Provider
+@JWTTokenNeeded
+public class JWTFilter {
+
+}

@@ -1,0 +1,35 @@
+package library2;
+
+import javax.inject.Inject;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+
+import libraryJPA2.LibManager;
+import libraryJPA2.Review;
+
+@Produces("text/plain")
+@Consumes("text/html")
+@Path("/review")
+public class OnReviewsOperations {
+
+	@Inject
+	private LibManager lmanager;
+	
+	@POST
+	@Path("/new")
+	public String insertReview(@PathParam("stars") int stars,@PathParam("comments") String comments,
+			@PathParam("userid") long userid,@PathParam("bookid") long bookid) {
+		Review r = new Review();
+		r.setBookid(bookid);
+		r.setComments(comments);
+		r.setStars(stars);
+		r.setUserid(userid);
+		
+		lmanager.setReview(r);
+		
+		return "success";
+	}
+}

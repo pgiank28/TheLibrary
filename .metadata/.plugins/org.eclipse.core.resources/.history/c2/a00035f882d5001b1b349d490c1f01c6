@@ -1,0 +1,63 @@
+package library2;
+
+import javax.annotation.Resource;
+import javax.ejb.SessionContext;
+import javax.inject.Inject;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+
+import libraryJPA2.Books;
+import libraryJPA2.LibManager;
+
+//import org.apache.log4j.Logger;
+
+@Produces("text/plain")
+@Consumes("text/html")
+@Path("/book")
+public class EditBooks {
+
+	@Inject
+	private LibManager lmanager;
+	
+	@Resource
+	private SessionContext context;
+	
+	@GET
+	@Path("/{id}")
+	public String getBook(@PathParam("id") long id) {
+		return lmanager.getBook(id);
+	}
+	
+	@POST
+	@Path("/new")
+	public String insertNewBook(@QueryParam("author") String author,@QueryParam("title") String title) {
+		lmanager.insertNewBook(author, title);
+		System.out.println(context.getCallerPrincipal().getName());
+		return "success";
+	}
+	
+	@POST
+	@Path("/edit")
+	public String updateBook(@QueryParam("id") long id,@QueryParam("author") String author,@QueryParam("title") String title) {
+		Books b = new Books();
+		b.setAuthor(author);
+		b.setTitle(title);
+		
+		lmanager.updateBook(b, id);
+		
+		return "success";
+	}
+	
+	@POST
+	@Path("/delete/{id}")
+	public String deleteBook(@PathParam("id") long id) {
+		lmanager.deleteBook(id);
+		
+		return "success";
+	}
+}

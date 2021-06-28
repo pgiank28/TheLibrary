@@ -1,0 +1,66 @@
+package libraryJPA2;
+
+import java.sql.Date;
+import java.sql.Time;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class UserActionLogs {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long id;
+	
+	@Column
+	private String operation;
+	
+	@Column
+	private String message;
+
+	@Column
+	private Time tstamp;
+	
+	@Column
+	private long uid;
+	
+	
+	public String getOperation() {
+		return operation;
+	}
+
+	public void setOperation(String operation) {
+		this.operation = operation;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public Time getTstamp() {
+		return tstamp;
+	}
+
+	public void setTstamp(Time tstamp) {
+		this.tstamp = tstamp;
+	}
+
+	public long getUid() {
+		return uid;
+	}
+
+	public void setUid(long uid) {
+		this.uid = uid;
+	}
+	
+	
+	
+}

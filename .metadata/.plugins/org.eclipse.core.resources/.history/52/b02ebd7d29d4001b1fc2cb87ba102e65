@@ -1,0 +1,62 @@
+package libraryJPA2;
+
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class UserActionLogs {
+
+	@Id
+	private long id;
+	
+	@Column
+	private String operation;
+	
+	@Column
+	private String message;
+
+	@Column
+	private TimeStamp tstamp;
+	
+	@Column
+	private long uid;
+	
+	
+	public String getOperation() {
+		return operation;
+	}
+
+	public void setOperation(String operation) {
+		this.operation = operation;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public Date getTstamp() {
+		return tstamp;
+	}
+
+	public void setTstamp(Date tstamp) {
+		this.tstamp = tstamp;
+	}
+
+	public long getUid() {
+		return uid;
+	}
+
+	public void setUid(long uid) {
+		this.uid = uid;
+	}
+	
+	
+	
+}

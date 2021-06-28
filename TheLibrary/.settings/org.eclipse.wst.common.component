@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+        
+    <wb-module deploy-name="TheLibrary">
+                
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="library.war" deploy-path="/" handle="module:/resource/library/library">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="libraryJPA.jar" deploy-path="/lib" handle="module:/resource/libraryJPA/libraryJPA">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="libraryEJB.jar" deploy-path="/" handle="module:/resource/libraryEJB/libraryEJB">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="libraryEJBClient.jar" deploy-path="/" handle="module:/resource/libraryEJBClient/libraryEJBClient">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="library2.war" deploy-path="/" handle="module:/resource/library2/library2">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="libraryJPA2.jar" deploy-path="/lib" handle="module:/resource/libraryJPA2/libraryJPA2">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+            
+    </wb-module>
+    
+</project-modules>

@@ -1,0 +1,7 @@
+package libraryJPA2;
+
+@Entity
+@Table(name="Users")
+public class User {
+
+}

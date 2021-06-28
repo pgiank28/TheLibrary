@@ -1,0 +1,10 @@
+package libraryJPA2;
+
+import javax.enterprise.context.SessionScoped;
+
+@SessionScoped
+public class UserSession {
+
+	private List<User> curUsers;
+	
+}

@@ -1,0 +1,41 @@
+package library2;
+
+import java.io.IOException;
+import java.util.Base64;
+import java.util.List;
+
+import javax.ws.rs.container.ContainerRequestContext;
+import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.core.Response;
+
+import java.util.Base64.*;
+
+
+public class BookFilter implements ContainerRequestFilter {
+
+	private static final String AUTHORIZATION_HEADER = "Authorization";
+	private static final String AUTHORIZATION_HEADER_PREFIX = "Basic ";
+	
+	@Override
+	public void filter(ContainerRequestContext requestContext) throws IOException {
+		
+		List<String> authorized = requestContext.getHeaders().get(AUTHORIZATION_HEADER);
+		if(authorized.size()>0) {
+			String authToken = authorized.get(0);
+			authToken = authToken.replace(AUTHORIZATION_HEADER_PREFIX, "");
+			
+			Base64.Decoder dec = Base64.getDecoder();
+			
+			String[] chunks = authToken.split("\\.");
+			String header = new String(dec.decode(chunks[0]));
+			String payload = new String(dec.decode(chunks[1]));
+			
+			if(header.equals("password")) {
+				return;
+			}
+		}
+		Response unauthorized = Response.status(Response.Status.UNAUTHORIZED).entity("User can't access the request").build();
+		requestContext.abortWith(unauthorized);
+	}
+
+}

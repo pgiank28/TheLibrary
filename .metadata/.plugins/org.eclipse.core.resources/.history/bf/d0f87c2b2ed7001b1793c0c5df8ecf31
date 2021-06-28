@@ -1,0 +1,22 @@
+package soap;
+
+import javax.inject.Inject;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+import javax.ws.rs.Path;
+
+import libraryJPA2.LibManager;
+
+
+@WebService
+@Path("/best")
+public class BestBooks {
+
+	@Inject
+	private LibManager lmanager;
+	
+	@WebMethod
+	public String getBestBooks() {
+		TypedQuery<Books> query = emanager.createQuery("SELECT r.bookid FROM review r WHERE r.stars>=3",Review.class);
+	}
+}

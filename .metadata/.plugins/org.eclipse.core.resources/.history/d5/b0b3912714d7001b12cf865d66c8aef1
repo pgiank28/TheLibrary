@@ -1,0 +1,53 @@
+package library2;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.crypto.spec.SecretKeySpec;
+import javax.inject.Inject;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.xml.bind.DatatypeConverter;
+
+import com.sun.org.apache.xml.internal.security.algorithms.SignatureAlgorithm;
+import io.jsonwebtoken.Jwts;
+
+import libraryJPA2.BCrypt;
+import libraryJPA2.LibManager;
+import libraryJPA2.User;
+
+@Consumes("text/html")
+@Produces("text/json")
+@Path("/login")
+public class Login {
+	
+	@Inject
+	private LibManager lmanager;
+	
+	@POST
+	public JsonObject Authentication(@PathParam("username") String uname,@PathParam("password") String password) {
+		List<User> authUsers = lmanager.getRegisteredUsers();
+		
+		for(User u:authUsers) {
+			if(u.getUsername().equals(uname) && u.getPassword().equals(BCrypt.bcryptHash(password))) {
+				return createToken(u.getId());
+			}
+		}
+		return "This account doesn't exist";
+	}
+	
+	public String createToken(String username) {
+
+	    String token = Jwts.builder()
+	            .setSubject(username)
+	            .setExpiration(System.currentTimeMillis()+10^6)
+	            .signWith(SignatureAlgorithm.HS512, SecurityConstants.TOKEN_SECRET)
+	            .compact();
+		
+	}
+}
